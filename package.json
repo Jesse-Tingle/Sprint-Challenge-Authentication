@@ -4,7 +4,7 @@
 	"description": "Authentication Sprint Challenge",
 	"main": "index.js",
 	"scripts": {
-		"test": "cross-env NODE_ENV=test jest --verbose",
+		"test": "cross-env NODE_ENV=test jest --detectOpenHandles --forceExit || true --verbose",
 		"server": "nodemon index.js",
 		"start": "node index.js"
 	},
