@@ -1,7 +1,7 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
 const Users = require("./auth-user-model.js");
-const { sessions, authenticate } = require("./authenticate-middleware.js");
+const authenticate = require("./authenticate-middleware.js");
 
 const router = express.Router();
 
@@ -44,7 +44,7 @@ router.post("/login", async (req, res, next) => {
 	}
 });
 
-router.get("/logout", authenticate(), async (req, res, next) => {
+router.get("/logout", authenticate, async (req, res, next) => {
 	req.session.destroy(err => {
 		if (err) {
 			next(err);

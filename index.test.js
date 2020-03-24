@@ -31,7 +31,11 @@ test("login route", async () => {
 });
 
 test("jokes route", async () => {
-	const res = await supertest(server).get("/api/jokes");
+	const fakeServer = supertest(server);
+	await fakeServer
+		.post("/api/auth/login")
+		.send({ username: "testUser", password: "12Ob67b6nt5" });
+	const res = await fakeServer.get("/api/jokes");
 	expect(res.statusCode).toBe(200);
 	expect(res.type).toBe("application/json");
 });
